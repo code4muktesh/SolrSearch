@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% load app_filters %}
+
+<div id="solr-searchbox" class="searchbar" style="width: 60%;margin-left:0;"> 
+<form method="get" action="/solr/search">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Search" value="{{queryStr}}" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+                </form>
+            </div>
+            <div style="margin-top:10px;">About {{searchResult.response.numFound}} results ({{responseTime}} seconds) </div>
+         
+          <div style="margin-top: 40px;">
+
+    
+
+    <section class="col-xs-12 col-sm-12 col-md-12" style="padding-left: 0;">
+     {% for item in searchResult.highlighting %}
+		<article class="search-result row">
+			
+			<div class="col-xs-12 col-sm-12 col-md-12 excerpet">
+				<h3><a href="/solr/landing?id={{item}}" title="">{{item}}</a></h3>
+				<p>{{ searchResult.highlighting|getContentFromJsonSolrResult:item }}</p>						
+                 
+			</div>
+			
+		</article>
+
+        	 {% endfor %}
+
+	</section>
+</div> 
+          
+          
+{% endblock %}

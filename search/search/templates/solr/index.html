@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div id="solr-searchbox" class="searchbar" style=" margin-top: 15%;width: 60%;"> 
+<center><h1>{{ page }}</h1></center>
+<form method="get" action="/solr/search">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Search" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+                </form>
+            </div>
+{% endblock %}
